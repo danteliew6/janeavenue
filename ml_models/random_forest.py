@@ -6,7 +6,6 @@ import os
 
 # Data
 data = pd.read_csv(os.getcwd() + "/ml_models/data/sample_data_num.csv")
-print(data)
 
 X = data[["YearFounded","CurrentValuation","InitialValuation","Industry","NumCompetitors","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE"]]
 y = data["Success"]
