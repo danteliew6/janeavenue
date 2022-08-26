@@ -22,3 +22,5 @@ def add_company(company_details):
         }
     db.child("PrivateCompanies").update(toAdd)
     return True
+
+
