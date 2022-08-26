@@ -17,4 +17,13 @@ class HermesApiController():
                 "investments": result.val()
             }), 200
 
-    
+    def addDeposit():
+        data = request.get_json()
+        curr_deposit = db.child('Investments').child(data['name']).get()
+        curr_deposit = curr_deposit.val()
+        curr_deposit = curr_deposit['TotalDeposits']
+        db.child('Investments').child(data['name']).update({'TotalDeposits': curr_deposit+data['deposit']})
+        return jsonify({
+            "message": "Deposited Successfully",
+            "investment_details": db.child('Investments').child(data['name']).get().val()
+        }), 200

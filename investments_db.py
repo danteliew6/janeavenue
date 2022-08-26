@@ -13,3 +13,4 @@ def add_investment(investment_details):
         }
     database.db.child("Investments").update(toAdd)
     return True
+
