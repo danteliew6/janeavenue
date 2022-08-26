@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from ..models.User import User
 from flask_cors import CORS
 from sqlalchemy import not_, func
-from src.splitbill import db
+from src.olympus import db
 from datetime import datetime
 import json
 import functools

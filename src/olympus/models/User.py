@@ -1,4 +1,4 @@
-from src.splitbill import db
+from src.olympus import db
 
 
 class User(db.Model):
