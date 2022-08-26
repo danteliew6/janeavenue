@@ -4,7 +4,6 @@ import logging
 from logging.config import fileConfig
 
 from flask import current_app
-from src.olympus.models.User import User
 
 from alembic import context
 
