@@ -1,10 +1,7 @@
 import pyrebase
 import my_secrets
 import datetime
-
-firebase = pyrebase.initialize_app(my_secrets.get_firebase_config())
-auth = firebase.auth()
-db = firebase.database()
+from src.olympus import db
 
 def add_company(company_details):
     toAdd = {

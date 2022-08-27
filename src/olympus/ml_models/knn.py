@@ -34,7 +34,7 @@ class KNN():
 
 
 # Data
-data = pd.read_csv(os.getcwd() + "/ml_models/data/sample_data_num.csv")
+data = pd.read_csv("src/olympus/ml_models/data/sample_data_num.csv")
 data.set_index("CompanyName",inplace=True)
 data.to_json("company_data.json",orient="index")
 # X = data[["YearFounded","CurrentValuation","InitialValuation","Industry","NumCompetitors","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE"]]
