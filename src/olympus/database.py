@@ -45,5 +45,4 @@ def add_history(user_input,classification):
         else:
             toAdd[curr][i] = j
     toAdd[curr]["Success"] = 1 if classification else 0
-    db.child("History").update(toAdd)
-    return True
+    db.child("History").update()
