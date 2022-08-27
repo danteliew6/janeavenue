@@ -26,6 +26,9 @@ def avg_successful_companies_metrics():
 def avg_unsuccessful_companies_metrics():
     return jsonify(database.get_avg_unsuccessful_company_metrics())
 
+@app.route("/api/athena/test")
+def test_api():
+    return jsonify(True)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5001)
