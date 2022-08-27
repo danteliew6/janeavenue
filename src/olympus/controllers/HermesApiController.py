@@ -65,7 +65,7 @@ class HermesApiController():
         
         return jsonify({
             "message": "Deposited Successfully",
-            "investment_details": new_balance
+            "user": db.child('Investors').child(data['user']).get().val()
         }), 200
 
     def withdrawDeposit():
@@ -91,7 +91,7 @@ class HermesApiController():
         db.child('Investments').child(data['name']).update({'TotalDeposits': curr_deposit-data['amount']})
         return jsonify({
             "message": "Withdrawed Successfully",
-            "investment_details": db.child('Investments').child(data['name']).get().val()
+            "user_details": user
         }), 200
 
     
