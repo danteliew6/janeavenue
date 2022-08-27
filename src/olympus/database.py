@@ -6,23 +6,6 @@ firebase = pyrebase.initialize_app(my_secrets.get_firebase_config())
 auth = firebase.auth()
 db = firebase.database()
 
-def add_company(company_details):
-    toAdd = {
-        "test": {
-            "AvgGrowthFundRound": 1,
-            "CurrentValuation": 1,
-            "FounderSch": "Stanford",
-            "Industry": "AI",
-            "InitialValuation": 1,
-            "LastUpdated": "datetime",
-            "NumCompetitors": 1,
-            "NumFounders": 1,
-            "YearFounded": 2001
-            }
-        }
-    db.child("PrivateCompanies").update(toAdd)
-    return True
-
 def get_avg_successful_company_metrics():
     return db.child("AvgSuccessfulCompanies").get().val()
 
@@ -45,4 +28,5 @@ def add_history(user_input,classification):
         else:
             toAdd[curr][i] = j
     toAdd[curr]["Success"] = 1 if classification else 0
-    db.child("History").update()
+    db.child("History").update(toAdd)
+    return True

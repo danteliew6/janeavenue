@@ -14,10 +14,14 @@ class AthenaApiController():
     def classify_company():
         # Good models: KNN, RF
         knn = KNN()
-        user_input = request.form.to_dict()
+        print(request.data)
+        #user_input = request.form.to_dict()
+        user_input = json.loads(request.data.decode('utf-8'))
         classification = knn.classify(user_input,database.get_private_companies())
-        database.add_history(user_input,classification)
-        return jsonify("Predicted Successful") if classification else jsonify("Predicted Unsuccessful")
+        print("Final output")
+        print(classification)
+        database.add_history(user_input,classification["Prediction"])
+        return jsonify(classification)
 
     def avg_successful_companies_metrics():
         return jsonify(database.get_avg_successful_company_metrics())

@@ -1,4 +1,6 @@
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neighbors import KNeighborsClassifier, NeighborhoodComponentsAnalysis
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 import pandas as pd
@@ -6,7 +8,11 @@ import os
 
 class KNN():
     def __init__(self) -> None:
-        self.model = KNeighborsClassifier(n_neighbors=3)
+        self.model = make_pipeline(
+            StandardScaler(),
+            NeighborhoodComponentsAnalysis(n_components=2, random_state=0),
+        )
+        self.knn = KNeighborsClassifier(n_neighbors=3)
         self.data = None
         self.X = None
         self.y = None
@@ -17,26 +23,33 @@ class KNN():
         self.data = df
         self.X = df[["YearFounded","CurrentValuation","InitialValuation","Industry","NumCompetitors","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE"]]
         self.y = df["Success"]
-        print(self.X)
-        print(self.y)
     
     def classify(self,user_input,priv_comp) -> bool:
         self.load_data(priv_comp)
+        # Reduce dimension to 2 with NeighborhoodComponentAnalysis
         self.model.fit(self.X,self.y)
+        self.knn.fit(self.model.transform(self.X),self.y)
         # convert user input into dataframe
         my_df = {}
+        print("User input")
+        print(user_input)
         for i,j in user_input.items():
             my_df[i] = [j]
         new_df = pd.DataFrame(data=my_df)
-        classification = self.model.predict(new_df)
+        print(new_df)
+        new_point = self.model.transform(new_df)
+        classification = self.knn.predict(new_point)
+        print("Classification")
         print(classification)
-        return True if classification[0] else False 
+        pred = True if classification[0] else False
+        X_embedded = self.model.transform(self.X)
+        return {"Prediction":pred,"X-axis":X_embedded[:,0].tolist(),"Y-axis":X_embedded[:,1].tolist(),"Point":new_point.tolist()}
 
 
 # Data
-data = pd.read_csv("src/olympus/ml_models/data/sample_data_num.csv")
-data.set_index("CompanyName",inplace=True)
-data.to_json("company_data.json",orient="index")
+# data = pd.read_csv("src/olympus/ml_models/data/sample_data_num.csv")
+# data.set_index("CompanyName",inplace=True)
+# data.to_json("company_data.json",orient="index")
 # X = data[["YearFounded","CurrentValuation","InitialValuation","Industry","NumCompetitors","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE"]]
 # y = data["Success"]
 # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
