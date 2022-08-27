@@ -113,8 +113,7 @@ class HermesApiController():
         }), 200
 
     def toggleFundSelection():
-        data = request.get_json()
-        fund_name = data['fund_name']
+        fund_name = request.args.get('fund_name')
         is_selected = db.child('Investments').child(fund_name).get().val()['Selected']
         db.child('Investments').child(fund_name).update({'Selected': not is_selected})
         return jsonify({
