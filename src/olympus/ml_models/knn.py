@@ -31,19 +31,17 @@ class KNN():
         self.knn.fit(self.model.transform(self.X),self.y)
         # convert user input into dataframe
         my_df = {}
-        print("User input")
-        print(user_input)
         for i,j in user_input.items():
             my_df[i] = [j]
         new_df = pd.DataFrame(data=my_df)
-        print(new_df)
         new_point = self.model.transform(new_df)
         classification = self.knn.predict(new_point)
         print("Classification")
         print(classification)
         pred = True if classification[0] else False
         X_embedded = self.model.transform(self.X)
-        return {"Prediction":pred,"X-axis":X_embedded[:,0].tolist(),"Y-axis":X_embedded[:,1].tolist(),"Point":new_point.tolist()}
+        all_points = list(zip(self.y.tolist(),X_embedded[:,0].tolist(),X_embedded[:,1].tolist()))
+        return {"Prediction":pred,"Points":all_points,"NewPoint":new_point.tolist()}
 
 
 # Data
