@@ -9,7 +9,6 @@ import functools
 
 class HermesApiController():
     
-    # message -> Cost of food and id of who ate
     def getAllInvestments():
         result = db.child("Investments").get()
         return jsonify({
@@ -22,7 +21,7 @@ class HermesApiController():
         curr_deposit = db.child('Investments').child(data['name']).get()
         curr_deposit = curr_deposit.val()
         curr_deposit = curr_deposit['TotalDeposits']
-        
+
         db.child('Investments').child(data['name']).update({'TotalDeposits': curr_deposit+data['amount']})
         return jsonify({
             "message": "Deposited Successfully",
