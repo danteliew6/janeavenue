@@ -10,6 +10,7 @@ api_bp.route('/get-all-investments', methods=['GET'])(HermesApiController.getAll
 api_bp.route('/deposit', methods=['POST'])(HermesApiController.addDeposit)
 api_bp.route('/withdraw', methods=['POST'])(HermesApiController.withdrawDeposit)
 api_bp.route('/get-user-investments/<name>', methods=['GET'])(HermesApiController.getUserInvestments)
+api_bp.route('/toggle-fund-selection', methods=['GET'])(HermesApiController.toggleFundSelection)
 
 api_bp.route('/athena/classify', methods=['POST'])(AthenaApiController.classify_company)
 api_bp.route('/athena/avgsuccessfulmetrics', methods=['GET'])(AthenaApiController.avg_successful_companies_metrics)

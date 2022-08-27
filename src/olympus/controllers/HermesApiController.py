@@ -100,8 +100,23 @@ class HermesApiController():
     
     def getUserInvestments(name):
         curr_user = db.child('Investors').child(name).get().val()
+        investments = curr_user['Investments']
+        balance = curr_user['Balance']
+        fund_details = db.child('Investments').get()
+        for fund in fund_details.each():
+            if not fund.val()['Selected']:
+                investments.pop(fund.key())
         return jsonify({
             "message": "User Investments Retrieved",
-            "investments": curr_user['Investments']
+            "investments": investments,
+            "balance": balance
         }), 200
 
+    def toggleFundSelection():
+        data = request.get_json()
+        fund_name = data['fund_name']
+        is_selected = db.child('Investments').child(fund_name).get().val()['Selected']
+        db.child('Investments').child(fund_name).update({'Selected': not is_selected})
+        return jsonify({
+            "message": "Toggled"
+        }), 200
