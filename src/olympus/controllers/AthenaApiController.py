@@ -64,7 +64,6 @@ class AthenaApiController():
         uSeriesECounter = 0
         industry_metric = {}
         for i,j in priv_companies.items():
-            print(i,j)
             if j["Success"]:
                 toSend["sSeriesA"] += j["SeriesA"]
                 sSeriesACounter += 1 if j["SeriesA"] else 0
