@@ -22,8 +22,28 @@ class HermesApiController():
         curr_deposit = db.child('Investments').child(data['name']).get()
         curr_deposit = curr_deposit.val()
         curr_deposit = curr_deposit['TotalDeposits']
-        db.child('Investments').child(data['name']).update({'TotalDeposits': curr_deposit+data['deposit']})
+        
+        db.child('Investments').child(data['name']).update({'TotalDeposits': curr_deposit+data['amount']})
         return jsonify({
             "message": "Deposited Successfully",
             "investment_details": db.child('Investments').child(data['name']).get().val()
         }), 200
+
+    def withdrawDeposit():
+        data = request.get_json()
+        curr_deposit = db.child('Investments').child(data['name']).get()
+        curr_deposit = curr_deposit.val()
+        curr_deposit = curr_deposit['TotalDeposits']
+        if curr_deposit < data['amount']:
+            return jsonify({
+            "message": "Insufficient Balance",
+            "investment_details": db.child('Investments').child(data['name']).get().val()
+        }), 400
+
+        db.child('Investments').child(data['name']).update({'TotalDeposits': curr_deposit-data['amount']})
+        return jsonify({
+            "message": "Withdrawed Successfully",
+            "investment_details": db.child('Investments').child(data['name']).get().val()
+        }), 200
+
+    
