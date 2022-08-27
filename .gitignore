@@ -138,7 +138,6 @@ dmypy.json
 cython_debug/
 
 # Custom project folders
-data/
 profiler_output/
 
 # VSCode 
