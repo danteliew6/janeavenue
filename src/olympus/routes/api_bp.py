@@ -14,7 +14,7 @@ api_bp.route('/get-user-investments/<name>', methods=['GET'])(HermesApiControlle
 api_bp.route('/athena/classify', methods=['POST'])(AthenaApiController.classify_company)
 api_bp.route('/athena/avgsuccessfulmetrics', methods=['GET'])(AthenaApiController.avg_successful_companies_metrics)
 api_bp.route('/athena/avgunsuccessfulmetrics', methods=['GET'])(AthenaApiController.avg_unsuccessful_companies_metrics)
-
+api_bp.route('/athena/all-industry-average', methods=['GET'])(AthenaApiController.get_all_industry_avg)
 
 # api_bp.route('/add-matches', methods=['POST'])(MatchController.addMatches)
 # api_bp.route('/get-team-rankings', methods=['GET'])(MatchController.getTeamRankings)
