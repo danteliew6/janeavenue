@@ -16,7 +16,7 @@ class AthenaApiController():
         #user_input = request.form.to_dict()
         user_input = json.loads(request.data.decode('utf-8'))
         # convert user input for series to %
-        formatted_user_input = user_input.deepcopy()
+        formatted_user_input = copy.deepcopy(user_input)
         formatted_user_input["SeriesA"] = round((user_input["SeriesA"] - user_input["Seed"])/user_input["Seed"],2) if "SeriesA" in user_input else 0
         formatted_user_input["SeriesB"] = round((user_input["SeriesB"] - user_input["SeriesA"])/user_input["SeriesA"],2) if "SeriesB" in user_input else 0
         formatted_user_input["SeriesC"] = round((user_input["SeriesC"] - user_input["SeriesB"])/user_input["SeriesB"],2) if "SeriesC" in user_input else 0

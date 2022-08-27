@@ -43,7 +43,8 @@ class KNN():
         print(classification)
         pred = True if classification[0] else False
         X_embedded = self.model.transform(self.X)
-        return {"Prediction":pred,"X-axis":X_embedded[:,0].tolist(),"Y-axis":X_embedded[:,1].tolist(),"Point":new_point.tolist()}
+        all_points = list(zip(self.y.tolist(),X_embedded[:,0].tolist(),X_embedded[:,1].tolist()))
+        return {"Prediction":pred,"Points":all_points,"NewPoint":new_point.tolist()}
 
 
 # Data
