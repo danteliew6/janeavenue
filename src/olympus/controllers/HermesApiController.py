@@ -91,7 +91,7 @@ class HermesApiController():
         db.child('Investments').child(data['name']).update({'TotalDeposits': curr_deposit-data['amount']})
         return jsonify({
             "message": "Withdrawed Successfully",
-            "user_details": user
+            "user_details": db.child('Investors').child(data['user']).get().val()
         }), 200
 
     
