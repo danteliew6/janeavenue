@@ -1,0 +1,97 @@
+{
+    "Dante": {
+      "Investments": {
+        "GS APAC Fixed Deposit": 0,
+        "GS Asia Pacific Tiger Fund": 0,
+        "GS CD":0,
+        "GS SG REIT Mutual Fund A":0,
+        "GS SG REIT Mutual Fund B":0,
+        "GS Pan Asia Bond Index Fund":0
+        },
+      "Balance": {
+        "SGD": 0,
+        "USD": 0,
+        "INR":0,
+        "IDR":0,
+        "MYR":0,
+        "PHP":0,
+	"THB": 0
+        }
+    },
+    "Zeph": {
+      "Investments": {
+        "GS APAC Fixed Deposit": 0,
+        "GS Asia Pacific Tiger Fund": 0,
+        "GS CD":0,
+        "GS SG REIT Mutual Fund A":0,
+        "GS SG REIT Mutual Fund B":0,
+        "GS Pan Asia Bond Index Fund":0
+        },
+      "Balance": {
+        "SGD": 0,
+        "USD": 0,
+        "INR":0,
+        "IDR":0,
+        "MYR":0,
+        "PHP":0,
+	"THB": 0
+        }
+    },
+    "Wei Min": {
+      "Investments": {
+        "GS APAC Fixed Deposit": 0,
+        "GS Asia Pacific Tiger Fund": 0,
+        "GS CD":0,
+        "GS SG REIT Mutual Fund A":0,
+        "GS SG REIT Mutual Fund B":0,
+        "GS Pan Asia Bond Index Fund":0
+        },
+      "Balance": {
+        "SGD": 0,
+        "USD": 0,
+        "INR":0,
+        "IDR":0,
+        "MYR":0,
+        "PHP":0,
+	"THB": 0
+        }
+    },
+    "Jin Yee": {
+      "Investments": {
+        "GS APAC Fixed Deposit": 0,
+        "GS Asia Pacific Tiger Fund": 0,
+        "GS CD":0,
+        "GS SG REIT Mutual Fund A":0,
+        "GS SG REIT Mutual Fund B":0,
+        "GS Pan Asia Bond Index Fund":0
+        },
+      "Balance": {
+        "SGD": 0,
+        "USD": 0,
+        "INR":0,
+        "IDR":0,
+        "MYR":0,
+        "PHP":0,
+	"THB": 0
+        }
+    },
+    "Jia Fang": {
+      "Investments": {
+        "GS APAC Fixed Deposit": 0,
+        "GS Asia Pacific Tiger Fund": 0,
+        "GS CD":0,
+        "GS SG REIT Mutual Fund A":0,
+        "GS SG REIT Mutual Fund B":0,
+        "GS Pan Asia Bond Index Fund":0
+        },
+      "Balance": {
+        "SGD": 0,
+        "USD": 0,
+        "INR":0,
+        "IDR":0,
+        "MYR":0,
+        "PHP":0,
+	"THB": 0
+        }
+    }
+  }
