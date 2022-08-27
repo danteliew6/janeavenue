@@ -11,9 +11,8 @@ api_bp.route('/deposit', methods=['POST'])(HermesApiController.addDeposit)
 api_bp.route('/withdraw', methods=['POST'])(HermesApiController.withdrawDeposit)
 
 api_bp.route('/athena/classify', methods=['POST'])(AthenaApiController.classify_company)
-api_bp.route('/athena/avgsuccessfulmetrics', methods=['POST'])(AthenaApiController.avg_successful_companies_metrics)
-api_bp.route('/athena/avgunsuccessfulmetrics', methods=['POST'])(AthenaApiController.avg_unsuccessful_companies_metrics)
-api_bp.route('/athena/classify', methods=['POST'])(AthenaApiController.classify_company)
+api_bp.route('/athena/avgsuccessfulmetrics', methods=['GET'])(AthenaApiController.avg_successful_companies_metrics)
+api_bp.route('/athena/avgunsuccessfulmetrics', methods=['GET'])(AthenaApiController.avg_unsuccessful_companies_metrics)
 
 
 # api_bp.route('/add-matches', methods=['POST'])(MatchController.addMatches)
