@@ -4,11 +4,28 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 import pyrebase
 import my_secrets
+from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
 CORS(app)
 app.config.from_object('config')
 
+def compoundInterest():
+    print("Starting Compound Interest Job")
+    result = db.child("Investments").get()
+    for investment in result.each():
+        name = investment.key()
+        investment = investment.val()
+        curr_deposit = investment['TotalDeposits']
+        curr_deposit *= (1 + investment['Interest'])
+        db.child('Investments').child(name).update({'TotalDeposits': curr_deposit})
+
+    print("Completed Compound Interest Job")
+
+
+sched = BackgroundScheduler(daemon=True)
+sched.add_job(compoundInterest,'interval',minutes=1)
+sched.start()
 
 firebase = pyrebase.initialize_app(my_secrets.get_firebase_config())
 auth = firebase.auth()
