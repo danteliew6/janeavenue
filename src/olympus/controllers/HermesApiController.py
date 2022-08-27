@@ -90,7 +90,7 @@ class HermesApiController():
         db.child('Investors').child(data['user']).child('Balance').update({currency : user_balance + data['amount']})
         db.child('Investors').child(data['user']).child('Investments').update({data['name'] : user_investment - data['amount']})
         db.child('Investments').child(data['name']).update({'TotalDeposits': curr_deposit-data['amount']})
-        time.sleep(1)
+        # time.sleep(1)
 
         return jsonify({
             "message": "Withdrawed Successfully",
