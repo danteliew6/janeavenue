@@ -9,6 +9,7 @@ api_bp = Blueprint("api_bp", __name__)
 api_bp.route('/get-all-investments', methods=['GET'])(HermesApiController.getAllInvestments)
 api_bp.route('/deposit', methods=['POST'])(HermesApiController.addDeposit)
 api_bp.route('/withdraw', methods=['POST'])(HermesApiController.withdrawDeposit)
+api_bp.route('/get-user-investments/<name>', methods=['GET'])(HermesApiController.getUserInvestments)
 
 api_bp.route('/athena/classify', methods=['POST'])(AthenaApiController.classify_company)
 api_bp.route('/athena/avgsuccessfulmetrics', methods=['GET'])(AthenaApiController.avg_successful_companies_metrics)

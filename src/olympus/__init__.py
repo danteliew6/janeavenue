@@ -10,6 +10,15 @@ app = Flask(__name__)
 CORS(app)
 app.config.from_object('config')
 
+def compoundUserInterest(investment, rate):
+    users = db.child('Investors').get()
+    for user in users.each():
+        name = user.key()
+        details = user.val()
+        current_balance = details['Investments'][investment]
+        current_balance *= (1 + rate)
+        db.child('Investors').child(name).child('Investments').update({investment : current_balance})
+
 def compoundInterest():
     print("Starting Compound Interest Job")
     result = db.child("Investments").get()
@@ -19,6 +28,7 @@ def compoundInterest():
         curr_deposit = investment['TotalDeposits']
         curr_deposit *= (1 + investment['Interest'])
         db.child('Investments').child(name).update({'TotalDeposits': curr_deposit})
+        compoundUserInterest(name, investment['Interest'])
 
     print("Completed Compound Interest Job")
 
