@@ -7,7 +7,7 @@ import my_secrets
 from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=['*', 'http://localhost:8000'])
 app.config.from_object('config')
 
 def compoundUserInterest(investment, rate):
