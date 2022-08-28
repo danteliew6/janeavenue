@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 from datetime import datetime
 import json
@@ -33,7 +33,9 @@ class AthenaApiController():
         print("Final output")
         print(classification)
         database.add_history(formatted_user_input,classification["Prediction"])
-        return jsonify(classification)
+        result = Response(jsonify(classification))
+        result.headers['Access-Control-Allow-Origin'] = '*'
+        return result
 
     def avg_successful_companies_metrics():
         return jsonify(database.get_avg_successful_company_metrics())
