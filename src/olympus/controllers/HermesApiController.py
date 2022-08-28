@@ -103,12 +103,17 @@ class HermesApiController():
         investments = curr_user['Investments']
         balance = curr_user['Balance']
         fund_details = db.child('Investments').get()
+        result = {}
         for fund in fund_details.each():
-            if not fund.val()['Selected']:
-                investments.pop(fund.key())
+            if fund.val()['Selected']:
+                result[fund.key()] = fund.val()
+                result[fund.key()]['Invested'] = investments[fund.key()]
+                result[fund.key()].pop('TotalDeposits')
+
+            
         return jsonify({
             "message": "User Investments Retrieved",
-            "investments": investments,
+            "investments": result,
             "balance": balance
         }), 200
 
