@@ -18,6 +18,7 @@ def compoundUserInterest(investment, rate):
         current_balance = details['Investments'][investment]
         current_balance *= (1 + rate)
         db.child('Investors').child(name).child('Investments').update({investment : current_balance})
+        print(f'Compounding user {name}, current balance: {current_balance}, interest rate: {rate}')
 
 def compoundInterest():
     print("Starting Compound Interest Job")
@@ -29,6 +30,7 @@ def compoundInterest():
         curr_deposit *= (1 + investment['Interest'])
         db.child('Investments').child(name).update({'TotalDeposits': curr_deposit})
         compoundUserInterest(name, investment['Interest'])
+        print(f'Compounding investment {name}, current balance: {curr_deposit}')
 
     print("Completed Compound Interest Job")
 
