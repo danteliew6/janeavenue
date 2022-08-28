@@ -68,7 +68,9 @@ class AthenaApiController():
                         pred_next_rounds["Seed"] = 0
         classification["PredictedGrowth"] = pred_next_rounds
         classification["FinalValuation"] = final_valuation
-        return jsonify(classification)
+        result = jsonify(classification)
+        result.headers.add('Access-Control-Allow-Origin', '*')
+        return result
 
     def avg_successful_companies_metrics():
         return jsonify(database.get_avg_successful_company_metrics())
