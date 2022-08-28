@@ -35,9 +35,9 @@ def compoundInterest():
     print("Completed Compound Interest Job")
 
 
-sched = BackgroundScheduler(daemon=True)
-sched.add_job(compoundInterest,'interval',minutes=1)
-sched.start()
+# sched = BackgroundScheduler(daemon=True)
+# sched.add_job(compoundInterest,'interval',minutes=1)
+# sched.start()
 
 firebase = pyrebase.initialize_app(my_secrets.get_firebase_config())
 auth = firebase.auth()
