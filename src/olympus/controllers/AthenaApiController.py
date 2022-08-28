@@ -3,6 +3,7 @@ from flask_cors import CORS
 from datetime import datetime
 import json
 import functools
+import random
 from src.olympus.ml_models.knn import KNN
 #from src.olympus.ml_models.arima import ARIMA
 from src.olympus import database
@@ -33,6 +34,40 @@ class AthenaApiController():
         print("Final output")
         print(classification)
         database.add_history(formatted_user_input,classification["Prediction"])
+        series_rounds = ["Seed","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE"]
+        pred_next_rounds = {}
+        curr_series = None
+        final_valuation = 0
+        if classification["Prediction"]:
+            # check the current series
+            for i in range(len(series_rounds)):
+                if series_rounds[i] != "Seed" and formatted_user_input[series_rounds[i]] == 0:
+                    if not curr_series:
+                        curr_series = series_rounds[i-1]
+                    growth = random.uniform(0,formatted_user_input[series_rounds[i-1]])
+                    pred_next_rounds[series_rounds[i]] = growth
+                    final_valuation = user_input[series_rounds[i-1]] * (1+growth)
+                else:
+                    if series_rounds[i] != "Seed":
+                        pred_next_rounds[series_rounds[i]] = formatted_user_input[series_rounds[i]]
+                    else:
+                        pred_next_rounds["Seed"] = 0
+        else:
+            # check the current series
+            for i in range(len(series_rounds)):
+                if series_rounds[i] != "Seed" and formatted_user_input[series_rounds[i]] == 0:
+                    if not curr_series:
+                        curr_series = series_rounds[i-1]
+                    growth = random.uniform(-1,formatted_user_input[series_rounds[i-1]])
+                    pred_next_rounds[series_rounds[i]] = growth
+                    final_valuation = user_input[series_rounds[i-1]] * (1+growth)
+                else:
+                    if series_rounds[i] != "Seed":
+                        pred_next_rounds[series_rounds[i]] = formatted_user_input[series_rounds[i]]
+                    else:
+                        pred_next_rounds["Seed"] = 0
+        classification["PredictedGrowth"] = pred_next_rounds
+        classification["FinalValuation"] = final_valuation
         return jsonify(classification)
 
     def avg_successful_companies_metrics():
