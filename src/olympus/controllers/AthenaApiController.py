@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, Response
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from datetime import datetime
 import json
 import functools
@@ -10,6 +10,7 @@ import copy
 
 class AthenaApiController():
 
+    @cross_origin()
     def classify_company():
         # Good models: KNN, RF
         knn = KNN()
