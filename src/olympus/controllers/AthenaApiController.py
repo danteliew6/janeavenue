@@ -95,8 +95,8 @@ class AthenaApiController():
                 seriesCounter += 1 if j[curr_round["Series"]] else 0
                 companyCounter += 1
                 peRatioSum += j["PeRatio"]
-                arrSum += j["Annual Recurring Revenue Growth Rate"]
-                grossMarginSum += j["Gross Margin"]
+                arrSum += j["AnnualRecurringRevenueGrowthRate"]
+                grossMarginSum += j["GrossMargin"]
                 schRankingSum += j["SchRanking"]
         toSend = {
             "AvgGrowthForRound":round(seriesSum/seriesCounter,2),

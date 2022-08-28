@@ -21,7 +21,7 @@ class KNN():
         df = pd.DataFrame(data=priv_comp)
         df = df.T
         self.data = df
-        self.X = df[["YearFounded","CurrentValuation","InitialValuation","Industry","NumCompetitors","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE","SchRanking","Annual Recurring Revenue Growth Rate","PeRatio","Gross Margin","LTV"]]
+        self.X = df[["YearFounded","CurrentValuation","InitialValuation","Industry","NumCompetitors","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE","SchRanking","AnnualRecurringRevenueGrowthRate","PeRatio","GrossMargin","LTV"]]
         self.y = df["Success"]
     
     def classify(self,user_input,priv_comp) -> bool:
