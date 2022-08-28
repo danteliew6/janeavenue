@@ -46,6 +46,7 @@ db = firebase.database()
 # from .routes.competition_bp import class_bp
 # from .routes.enrollment_bp import enrollment_bp
 from .routes.api_bp import api_bp
+
 CORS(api_bp)
 app.register_blueprint(api_bp, url_prefix='/api')
 
