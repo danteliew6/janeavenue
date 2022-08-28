@@ -60,11 +60,29 @@ class AthenaApiController():
                 break
         seriesSum = 0
         seriesCounter = 0
+        companyCounter = 0
+        peRatioSum = 0
+        arrSum = 0
+        grossMarginSum = 0
+        schRankingSum = 0
         for i,j in priv_companies.items():
             if j["Success"] and j["Industry"] == curr_industry:
                 seriesSum += j[curr_round["Series"]]
                 seriesCounter += 1 if j[curr_round["Series"]] else 0
-        return jsonify({"AvgGrowthForRound":round(seriesSum/seriesCounter,2),"CurrentCompanyGrowth":curr_round["Growth"]})
+                companyCounter += 1
+                peRatioSum += j["PeRatio"]
+                arrSum += j["Annual Recurring Revenue Growth Rate"]
+                grossMarginSum += j["Gross Margin"]
+                schRankingSum += j["SchRanking"]
+        toSend = {
+            "AvgGrowthForRound":round(seriesSum/seriesCounter,2),
+            "CurrentCompanyGrowth":curr_round["Growth"],
+            "AvgPeRatio":round(peRatioSum/companyCounter,2),
+            "AvgARR":round(arrSum/companyCounter,2),
+            "AvgGrossMargin":round(grossMarginSum/companyCounter,2),
+            "AvgSchRanking":round(schRankingSum/companyCounter,2)
+        }
+        return jsonify(toSend)
 
     def get_all_industry_avg():
         priv_companies = database.get_private_companies()
