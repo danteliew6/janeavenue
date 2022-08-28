@@ -50,6 +50,7 @@ class AthenaApiController():
                 else:
                     if series_rounds[i] != "Seed":
                         pred_next_rounds[series_rounds[i]] = formatted_user_input[series_rounds[i]]
+                        final_valuation = user_input[series_rounds[i]]
                     else:
                         pred_next_rounds["Seed"] = 0
         else:
@@ -64,6 +65,7 @@ class AthenaApiController():
                 else:
                     if series_rounds[i] != "Seed":
                         pred_next_rounds[series_rounds[i]] = formatted_user_input[series_rounds[i]]
+                        final_valuation = user_input[series_rounds[i]]
                     else:
                         pred_next_rounds["Seed"] = 0
         classification["PredictedGrowth"] = pred_next_rounds
