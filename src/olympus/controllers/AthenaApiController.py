@@ -33,8 +33,8 @@ class AthenaApiController():
         print("Final output")
         print(classification)
         database.add_history(formatted_user_input,classification["Prediction"])
-        result = Response(jsonify(classification))
-        result.headers['Access-Control-Allow-Origin'] = '*'
+        result = jsonify(classification)
+        result.headers.add('Access-Control-Allow-Origin','*')
         return result
 
     def avg_successful_companies_metrics():
