@@ -95,6 +95,9 @@ class AthenaApiController():
                 curr_round["Series"] = series_rounds[i-1]
                 curr_round["Growth"] = round((user_input[series_rounds[i-1]] - user_input[series_rounds[i-2]]) / user_input[series_rounds[i-2]],2)
                 break
+        else:
+            curr_round["Series"] = "SeriesE"
+            curr_round["Growth"] = round((user_input["SeriesE"] - user_input["SeriesD"]) / user_input["SeriesD"],2)
         seriesSum = 0
         seriesCounter = 0
         companyCounter = 0
