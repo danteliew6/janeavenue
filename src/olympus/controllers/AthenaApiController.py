@@ -10,7 +10,6 @@ import copy
 
 class AthenaApiController():
 
-    @cross_origin()
     def classify_company():
         # Good models: KNN, RF
         knn = KNN()

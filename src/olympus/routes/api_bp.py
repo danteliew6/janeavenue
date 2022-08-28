@@ -1,9 +1,12 @@
 from flask import Blueprint
+from flask_cors import CORS
 from ..controllers.HermesApiController import HermesApiController
 from ..controllers.AthenaApiController import AthenaApiController
 
 
 api_bp = Blueprint("api_bp", __name__)
+CORS(api_bp)
+
 
 # class_bp.route('/classlist', methods=['GET'])(ClassController.getClassList)
 api_bp.route('/get-all-investments', methods=['GET'])(HermesApiController.getAllInvestments)
