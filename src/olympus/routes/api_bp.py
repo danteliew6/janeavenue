@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from ..controllers.HermesApiController import HermesApiController
 from ..controllers.AthenaApiController import AthenaApiController
 
@@ -15,6 +15,7 @@ api_bp.route('/withdraw', methods=['POST'])(HermesApiController.withdrawDeposit)
 api_bp.route('/get-user-investments/<name>', methods=['GET'])(HermesApiController.getUserInvestments)
 api_bp.route('/toggle-fund-selection', methods=['GET'])(HermesApiController.toggleFundSelection)
 
+@cross_origin()
 api_bp.route('/athena/classify', methods=['POST'])(AthenaApiController.classify_company)
 api_bp.route('/athena/avgsuccessfulmetrics', methods=['GET'])(AthenaApiController.avg_successful_companies_metrics)
 api_bp.route('/athena/avgunsuccessfulmetrics', methods=['GET'])(AthenaApiController.avg_unsuccessful_companies_metrics)
