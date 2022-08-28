@@ -4,28 +4,32 @@
       "Interest": 0.012,
       "Ticker": "GSAFD",
       "TotalDeposits": 0,
-      "Type": "Fixed Deposit"
+      "Type": "Fixed Deposit",
+      "Selected": true
     },
     "GS Asia Pacific Tiger Fund": {
       "Currency": "USD",
       "Interest": 0.03,
       "Ticker": "GSATF",
       "TotalDeposits": 0,
-      "Type": "Mutual Fund"
+      "Type": "Mutual Fund",
+      "Selected": true
     },
     "GS CD": {
       "Currency": "SGD",
       "Interest": 0.013,
       "Ticker": "GSCDA",
       "TotalDeposits": 0,
-      "Type": "Certificate of Deposit"
+      "Type": "Certificate of Deposit",
+      "Selected": true
     },
     "GS SG REIT Mutual Fund A": {
       "Currency": "SGD",
       "Interest": 0.04,
       "Ticker": "SREITA",
       "TotalDeposits": 0,
-      "Type": "Mutual Fund"
+      "Type": "Mutual Fund",
+      "Selected": true
     },
   
     "GS SG REIT Mutual Fund B": {
@@ -33,13 +37,15 @@
       "Interest": 0.035,
       "Ticker": "SREITB",
       "TotalDeposits": 0,
-      "Type": "Mutual Fund"
+      "Type": "Mutual Fund",
+      "Selected": true
     },
     "GS Pan Asia Bond Index Fund": {
       "Currency": "SGD",
       "Interest": 0.035,
       "Ticker": "GSBIF",
       "TotalDeposits": 0,
-      "Type": "Mutual Fund"
+      "Type": "Mutual Fund",
+      "Selected": true
     }
   }

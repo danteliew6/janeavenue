@@ -6,6 +6,7 @@ from src.olympus import db
 from datetime import datetime
 import json
 import functools
+import time
 
 class HermesApiController():
     global EXCHANGE_RATE
@@ -89,16 +90,32 @@ class HermesApiController():
         db.child('Investors').child(data['user']).child('Balance').update({currency : user_balance + data['amount']})
         db.child('Investors').child(data['user']).child('Investments').update({data['name'] : user_investment - data['amount']})
         db.child('Investments').child(data['name']).update({'TotalDeposits': curr_deposit-data['amount']})
+        # time.sleep(1)
+
         return jsonify({
             "message": "Withdrawed Successfully",
-            "user_details": user
+            "user_details": db.child('Investors').child(data['user']).get().val()
         }), 200
 
     
     def getUserInvestments(name):
         curr_user = db.child('Investors').child(name).get().val()
+        investments = curr_user['Investments']
+        balance = curr_user['Balance']
+        fund_details = db.child('Investments').get()
+        for fund in fund_details.each():
+            if not fund.val()['Selected']:
+                investments.pop(fund.key())
         return jsonify({
             "message": "User Investments Retrieved",
-            "investments": curr_user['Investments']
+            "investments": investments,
+            "balance": balance
         }), 200
 
+    def toggleFundSelection():
+        fund_name = request.args.get('fund_name')
+        is_selected = db.child('Investments').child(fund_name).get().val()['Selected']
+        db.child('Investments').child(fund_name).update({'Selected': not is_selected})
+        return jsonify({
+            "message": "Toggled"
+        }), 200
