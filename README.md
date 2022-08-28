@@ -4,6 +4,10 @@
 * Run `pip install -r requirements.txt` to install all necessary libraries
 * Run `python run.py`
 
+Pitch Video Link:
+Google Drive: https://drive.google.com/file/d/134KttW0uD1ZjPgxLFr6fwUfOr2AN8Qzq/view?usp=sharing
+Youtube: https://www.youtube.com/watch?v=9B91bz1sdeg
+
 ![Slide1](https://user-images.githubusercontent.com/61372973/187069069-e17d631e-a7e4-4034-bf93-d46307ecfb0b.jpg)
 ![Slide2](https://user-images.githubusercontent.com/61372973/187069070-40808d21-34dd-4dcc-bb4c-0c27a974564a.jpg)
 ![Slide3](https://user-images.githubusercontent.com/61372973/187069071-b2d12733-ab86-4e07-ac5c-b52949e38069.jpg)
@@ -15,3 +19,5 @@
 ![Slide9](https://user-images.githubusercontent.com/61372973/187069064-ee6eec01-c4d4-4f78-adec-434e6b896b79.jpg)
 ![Slide11](https://user-images.githubusercontent.com/61372973/187069066-d530fd2b-cdd0-4d6a-8655-70f66676101c.jpg)
 ![Slide12](https://user-images.githubusercontent.com/61372973/187069067-3fe9090e-d361-4f3b-9e37-96cfcca112d1.jpg)
+
+
