@@ -13,7 +13,7 @@ class RFReg():
 
     def load_data(self,df) -> None:
         self.data = df
-        self.X = df[["YearFounded","CurrentValuation","InitialValuation","Industry","NumCompetitors","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE"]]
+        self.X = df[["YearFounded","CurrentValuation","InitialValuation","Industry","NumCompetitors","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE","SchRanking","Annual Recurring Revenue Growth Rate","PeRatio","Gross Margin"]]
         self.y = df["Success"]
     
     def classify(self,user_input,df) -> bool:
