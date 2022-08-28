@@ -4,7 +4,7 @@ from datetime import datetime
 import json
 import functools
 from src.olympus.ml_models.knn import KNN
-from src.olympus.ml_models.arima import ARIMA
+
 from src.olympus import database
 import copy
 
@@ -41,9 +41,15 @@ class AthenaApiController():
     def avg_unsuccessful_companies_metrics():
         return jsonify(database.get_avg_unsuccessful_company_metrics())
 
-    def train_prediction():
-        arima = ARIMA()
-        pass
+    # def train_prediction():
+    #     arima = ARIMA()
+    #     private_companies = database.get_private_companies()
+    #     industry_map = database.get_industry()
+    #     series_rounds = ["SeriesA","SeriesB","SeriesC","SeriesD","SeriesE"]
+    #     formatted_data = {"Successful":{},"Unsuccessful":{}}
+    #     for i,j in private_companies.items():
+    #         if j["Success"]:
+    #             if 
 
     def get_industry_avg():
         priv_companies = database.get_private_companies()
