@@ -5,8 +5,8 @@
 * Run `python run.py`
 
 Pitch Video Link:
-Google Drive: https://drive.google.com/file/d/134KttW0uD1ZjPgxLFr6fwUfOr2AN8Qzq/view?usp=sharing
-Youtube: https://www.youtube.com/watch?v=9B91bz1sdeg
+  Google Drive: https://drive.google.com/file/d/134KttW0uD1ZjPgxLFr6fwUfOr2AN8Qzq/view?usp=sharing
+  Youtube: https://www.youtube.com/watch?v=9B91bz1sdeg
 
 ![Slide1](https://user-images.githubusercontent.com/61372973/187069069-e17d631e-a7e4-4034-bf93-d46307ecfb0b.jpg)
 ![Slide2](https://user-images.githubusercontent.com/61372973/187069070-40808d21-34dd-4dcc-bb4c-0c27a974564a.jpg)
