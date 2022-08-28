@@ -4,6 +4,7 @@ from datetime import datetime
 import json
 import functools
 from src.olympus.ml_models.knn import KNN
+from src.olympus.ml_models.arima import ARIMA
 from src.olympus import database
 import copy
 
@@ -12,10 +13,10 @@ class AthenaApiController():
     def classify_company():
         # Good models: KNN, RF
         knn = KNN()
-        print(request.form.to_dict())
-        user_input = request.form.to_dict()
+        user_input = json.loads(request.data.decode('utf-8'))
         industry_map = database.get_industry()
         #user_input = json.loads(request.data.decode('utf-8'))
+        # user_input = request.form.to_dict()
         # convert user input for series to %
         formatted_user_input = copy.deepcopy(user_input)
         formatted_user_input["SeriesA"] = round((user_input["SeriesA"] - user_input["Seed"])/user_input["Seed"],2) if "SeriesA" in user_input else 0
@@ -39,6 +40,10 @@ class AthenaApiController():
 
     def avg_unsuccessful_companies_metrics():
         return jsonify(database.get_avg_unsuccessful_company_metrics())
+
+    def train_prediction():
+        arima = ARIMA()
+        pass
 
     def get_industry_avg():
         priv_companies = database.get_private_companies()

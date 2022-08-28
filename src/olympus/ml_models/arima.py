@@ -1,17 +1,30 @@
 import numpy as np 
 import pandas as pd 
-import matplotlib.pyplot as plt
 from pandas.plotting import lag_plot
 from datetime import datetime, date, timedelta
-from pandas_datareader import data, test
-from statsmodels.tsa.arima.model import ARIMA
 from sklearn.metrics import mean_squared_error
 from pmdarima.arima import auto_arima
-import RoboFund.lstm as lstm
 import math
 
-# stockList: (List) of stocks returned by the screener. 1D list with just the tickers
-# timeHorizon: (int) days the Asset Manager intends to hold the stock 
+class ARIMA():
+    def __init__(self) -> None:
+        self.model = None
+        self.data = None
+        self.X = None
+        self.y = None
+    
+    def load_data(self,priv_comp) -> None:
+        df = pd.DataFrame(data=priv_comp)
+        df = df.T
+        self.data = df
+        self.X = df[["YearFounded","CurrentValuation","InitialValuation","Industry","NumCompetitors","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE","SchRanking","Annual Recurring Revenue Growth Rate","PeRatio","Gross Margin"]]
+        self.y = df["Success"]
+
+    def train(self,priv_comp):
+        self.load_data(priv_comp)
+        self.model = auto_arima(self.X,)
+
+
 def get_predictions(stockList, timeHorizon):
     outputList = [] # contains tuples with the stock ticker as well as predicted growth in the next <time horizon>
     predictedValues = {}
