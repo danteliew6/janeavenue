@@ -4,7 +4,7 @@
 * Run `pip install -r requirements.txt` to install all necessary libraries
 * Run `python run.py`
 
-Pitch Video Link:
+# Pitch Video Link:
   Google Drive: https://drive.google.com/file/d/134KttW0uD1ZjPgxLFr6fwUfOr2AN8Qzq/view?usp=sharing
   Youtube: https://www.youtube.com/watch?v=9B91bz1sdeg
 
