@@ -4,7 +4,7 @@ from datetime import datetime
 import json
 import functools
 from src.olympus.ml_models.knn import KNN
-
+#from src.olympus.ml_models.arima import ARIMA
 from src.olympus import database
 import copy
 
@@ -32,7 +32,7 @@ class AthenaApiController():
         classification = knn.classify(formatted_user_input,database.get_private_companies())
         print("Final output")
         print(classification)
-        database.add_history(user_input,classification["Prediction"])
+        database.add_history(formatted_user_input,classification["Prediction"])
         return jsonify(classification)
 
     def avg_successful_companies_metrics():
@@ -49,7 +49,20 @@ class AthenaApiController():
     #     formatted_data = {"Successful":{},"Unsuccessful":{}}
     #     for i,j in private_companies.items():
     #         if j["Success"]:
-    #             if 
+    #             if j["Industry"] in formatted_data["Successful"]:
+    #                 for k in series_rounds:
+    #                     formatted_data["Successful"][j["Industry"]].append(j[k])
+    #             else:
+    #                 formatted_data["Successful"][j["Industry"]] = [j[k]]
+    #         else:
+    #             if j["Industry"] in formatted_data["Unsuccessful"]:
+    #                 for k in series_rounds:
+    #                     formatted_data["Unsuccessful"][j["Industry"]].append(j[k])
+    #             else:
+    #                 formatted_data["Unsuccessful"][j["Industry"]] = [j[k]]
+
+    #     for i,j in formatted_data.items():
+    #         arima.train(j["Industry"])
 
     def get_industry_avg():
         priv_companies = database.get_private_companies()
