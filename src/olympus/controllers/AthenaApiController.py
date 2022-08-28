@@ -12,9 +12,10 @@ class AthenaApiController():
     def classify_company():
         # Good models: KNN, RF
         knn = KNN()
-        print(request.data)
-        #user_input = request.form.to_dict()
-        user_input = json.loads(request.data.decode('utf-8'))
+        print(request.form.to_dict())
+        user_input = request.form.to_dict()
+        industry_map = database.get_industry()
+        #user_input = json.loads(request.data.decode('utf-8'))
         # convert user input for series to %
         formatted_user_input = copy.deepcopy(user_input)
         formatted_user_input["SeriesA"] = round((user_input["SeriesA"] - user_input["Seed"])/user_input["Seed"],2) if "SeriesA" in user_input else 0
@@ -23,6 +24,10 @@ class AthenaApiController():
         formatted_user_input["SeriesD"] = round((user_input["SeriesD"] - user_input["SeriesC"])/user_input["SeriesC"],2) if "SeriesD" in user_input else 0
         formatted_user_input["SeriesE"] = round((user_input["SeriesE"] - user_input["SeriesD"])/user_input["SeriesD"],2) if "SeriesE" in user_input else 0
         formatted_user_input.pop("Seed")
+        for i,j in industry_map.items():
+            if formatted_user_input["Industry"] == j:
+                formatted_user_input["Industry"] = i
+                break
         classification = knn.classify(formatted_user_input,database.get_private_companies())
         print("Final output")
         print(classification)
@@ -34,6 +39,32 @@ class AthenaApiController():
 
     def avg_unsuccessful_companies_metrics():
         return jsonify(database.get_avg_unsuccessful_company_metrics())
+
+    def get_industry_avg():
+        priv_companies = database.get_private_companies()
+        industry_map = database.get_industry()
+        user_input = json.loads(request.data.decode('utf-8'))
+        curr_industry = user_input["industry"]
+
+        for i,j in industry_map.items():
+            if curr_industry == j:
+                curr_industry = i
+                break
+        
+        series_rounds = ["Seed","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE"]
+        curr_round = {}
+        for i in range(len(series_rounds)):
+            if user_input[series_rounds[i]] == 0:
+                curr_round["Series"] = series_rounds[i-1]
+                curr_round["Growth"] = round((user_input[series_rounds[i-1]] - user_input[series_rounds[i-2]]) / user_input[series_rounds[i-2]],2)
+                break
+        seriesSum = 0
+        seriesCounter = 0
+        for i,j in priv_companies.items():
+            if j["Success"] and j["Industry"] == curr_industry:
+                seriesSum += j[curr_round["Series"]]
+                seriesCounter += 1 if j[curr_round["Series"]] else 0
+        return jsonify({"AvgGrowthForRound":round(seriesSum/seriesCounter,2),"CurrentCompanyGrowth":curr_round["Growth"]})
 
     def get_all_industry_avg():
         priv_companies = database.get_private_companies()

@@ -16,7 +16,11 @@ def get_private_companies():
     return db.child("PrivateCompanies").get().val()
 
 def get_industry():
-    return db.child("IndustryMap").get().val()
+    industries = db.child("IndustryMap").get()
+    toSend = {}
+    for i in industries.each():
+        toSend[i.key()] = i.val()
+    return toSend 
 
 def add_history(user_input,classification):
     curr = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S%f")

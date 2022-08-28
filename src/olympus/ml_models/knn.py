@@ -21,7 +21,7 @@ class KNN():
         df = pd.DataFrame(data=priv_comp)
         df = df.T
         self.data = df
-        self.X = df[["YearFounded","CurrentValuation","InitialValuation","Industry","NumCompetitors","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE"]]
+        self.X = df[["YearFounded","CurrentValuation","InitialValuation","Industry","NumCompetitors","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE","SchRanking","Annual Recurring Revenue Growth Rate","PeRatio","Gross Margin"]]
         self.y = df["Success"]
     
     def classify(self,user_input,priv_comp) -> bool:
@@ -45,7 +45,7 @@ class KNN():
 
 
 # Data
-# data = pd.read_csv("src/olympus/ml_models/data/sample_data_num.csv")
+# data = pd.read_csv("src/olympus/ml_models/data/sample_data_num_final.csv")
 # data.set_index("CompanyName",inplace=True)
 # data.to_json("company_data.json",orient="index")
 # X = data[["YearFounded","CurrentValuation","InitialValuation","Industry","NumCompetitors","SeriesA","SeriesB","SeriesC","SeriesD","SeriesE"]]
