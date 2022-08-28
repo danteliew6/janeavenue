@@ -1,5 +1,5 @@
 # janeavenue
 
-# Dependencies
-## Database
-* pip install Pyrebase4
+# Instruction To Run
+* Run `pip install -r requirements.txt` to install all necessary libraries
+* Run `python run.py`
