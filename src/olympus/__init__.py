@@ -7,7 +7,7 @@ import my_secrets
 from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
-CORS(app, origins=['*', 'http://localhost:8080'])
+CORS(app, origins=['*'])
 app.config.from_object('config')
 
 def compoundUserInterest(investment, rate):
@@ -46,6 +46,7 @@ db = firebase.database()
 # from .routes.competition_bp import class_bp
 # from .routes.enrollment_bp import enrollment_bp
 from .routes.api_bp import api_bp
+CORS(api_bp)
 app.register_blueprint(api_bp, url_prefix='/api')
 
 

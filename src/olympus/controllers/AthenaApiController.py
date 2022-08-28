@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, Response
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from datetime import datetime
 import json
 import functools
@@ -49,6 +49,7 @@ class AthenaApiController():
                 else:
                     if series_rounds[i] != "Seed":
                         pred_next_rounds[series_rounds[i]] = formatted_user_input[series_rounds[i]]
+                        final_valuation = user_input[series_rounds[i]]
                     else:
                         pred_next_rounds["Seed"] = 0
         else:
@@ -63,13 +64,12 @@ class AthenaApiController():
                 else:
                     if series_rounds[i] != "Seed":
                         pred_next_rounds[series_rounds[i]] = formatted_user_input[series_rounds[i]]
+                        final_valuation = user_input[series_rounds[i]]
                     else:
                         pred_next_rounds["Seed"] = 0
         classification["PredictedGrowth"] = pred_next_rounds
         classification["FinalValuation"] = final_valuation
-        result = jsonify(classification)
-        result.headers.add('Access-Control-Allow-Origin', '*')
-        return result
+        return jsonify(classification)
 
     def avg_successful_companies_metrics():
         return jsonify(database.get_avg_successful_company_metrics())
